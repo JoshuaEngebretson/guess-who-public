@@ -1,40 +1,56 @@
 $(document).ready(onReady)
 
-// all .js files sourced properly
+const GuessWhoMax = (people.length-1)
+let GuessWhoAnswer;
 
+// all .js files sourced properly
 function onReady() {
   console.log('Here are all the available people:', people);
-  showPeople();
 
-  $('#D20').on('click', d20)
+  renderProfilePicture();
+  GenerateAnswer()
+
+  $('#GitHub-Images').on('click', '.Profile-Picture', userGuess)
 
 }
 
-function showPeople() {
-  console.log('in showPeople');
+// Function renders the GitHub profile picture for each person
+//  in the "people" array and assigns that div a data point of
+//  Picture-x where x is the placement within the array.
+function renderProfilePicture() {
 
+  let x = 1
+  
   for (const person of people) {
+    $('#GitHub-Images').data(`${x}`);
     $('#GitHub-Images').append(`
-      <div class="Profile-Picture">
-      <img src="https://github.com/${person.githubUsername}.png?size=250" alt="Profile image of Chris">
+      <div class="Profile-Picture" id="${person.name}">
+        <img src="https://github.com/${person.githubUsername}.png?size=250"
+        alt="Profile image of ${person.name}">
       </div>
     `)
+    x++
   }
 }
 
+function GenerateAnswer() {
+
+  let randomPerson = (people[randomNumber(0, GuessWhoMax)]).name;
+
+  $('#Guess-Me').text();
+
+  $('#Guess-ME').text(`
+    Click the image for ---> ${randomPerson}
+  `);
+}
+
+
+function userGuess() {
+
+  GenerateAnswer()
+
+}
 
 function randomNumber(min, max){
   return Math.floor(Math.random() * (1 + max - min) + min);
-}
-
-console.log(randomNumber(1, 20));
-
-function d20() {
-  let d20Roll = randomNumber(1,20)
-
-  if (d20Roll === 20) {
-    return console.log('you got a crit! ---->', d20Roll);
-  }
-
- return console.log(d20Roll);
 }
