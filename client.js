@@ -37,10 +37,12 @@ function GenerateAnswer() {
 
   let randomPerson = (people[randomNumber(0, GuessWhoMax)]).name;
 
-  $('#Guess-Me').text();
+  $('#Guess-ME').empty();
 
-  $('#Guess-ME').text(`
-    Click the image for ---> ${randomPerson}
+  $('#Guess-ME').append(`
+    <p>
+      Click the image for ---> ${randomPerson}
+    </p>
   `);
 }
 
