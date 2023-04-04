@@ -22,7 +22,7 @@ function renderProfilePicture() {
   let x = 1
   
   for (const person of people) {
-    $('#GitHub-Images').data(`${x}`);
+    $('#GitHub-Images').data(`${person.name}`);
     $('#GitHub-Images').append(`
       <div class="Profile-Picture" id="${person.name}">
         <img src="https://github.com/${person.githubUsername}.png?size=250"
@@ -31,28 +31,37 @@ function renderProfilePicture() {
     `)
     x++
   }
+
 }
 
 function GenerateAnswer() {
 
-  let randomPerson = (people[randomNumber(0, GuessWhoMax)]).name;
+  let randomPersonName = (people[randomNumber(0, GuessWhoMax)]).name;
 
   $('#Guess-ME').empty();
 
   $('#Guess-ME').append(`
     <p>
-      Click the image for ---> ${randomPerson}
+      Click on the image for ---> ${randomPersonName}
     </p>
   `);
+
+  GuessWhoAnswer = randomPersonName
+
 }
 
 
 function userGuess() {
 
-  GenerateAnswer()
+  window.alert('is this working?');
+  // $(this).alert('is this working?');
+
+  // If correct Generate Answer
+  GenerateAnswer();
 
 }
 
 function randomNumber(min, max){
   return Math.floor(Math.random() * (1 + max - min) + min);
 }
+
