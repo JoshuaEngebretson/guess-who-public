@@ -11,4 +11,9 @@ body {
 
 .Profile-Picture {
   display: inline-block;
+  padding: 1%;
+}
+
+.Green-Background {
+  background-color: green;
 }

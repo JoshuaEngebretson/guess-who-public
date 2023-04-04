@@ -23,7 +23,7 @@ function renderProfilePicture() {
   for (const person of people) {
     $('#GitHub-Images').append(`
       <div class="Profile-Picture" id="${person.name}">
-        <img src="https://github.com/${person.githubUsername}.png?size=300"
+        <img src="https://github.com/${person.githubUsername}.png?size=200"
         alt="Profile image of ${person.name}">
       </div>
     `)
@@ -53,13 +53,18 @@ function GenerateAnswer() {
 
 function userGuess() {
 
-  let guess = $(this).attr('id')
+  let guess = $(this).attr('id');
+  let parent = $(this).parent();
   
   if (guess === GuessWhoAnswer) {
-    window.alert(`You found ${GuessWhoAnswer}! Let's play again!`)
-    
-    // If correct Generate Answer
-    GenerateAnswer();
+    parent.addClass('Green-Background')
+    setTimeout(function(){
+      parent.removeClass('Green-Background')}, 500);
+    setTimeout(function(){
+      window.alert(`You found ${GuessWhoAnswer}! Let's play again!`);
+      // If correct Generate Answer
+      GenerateAnswer();
+    }, 50)
   }
   else {
     if (guessCount === 1) {
